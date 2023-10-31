@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Guests;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
@@ -11,7 +11,7 @@ class PageController extends Controller
     {
         $comics = config('comics');
 
-        return view('index', compact('comics'));
+        return view('home', compact('comics'));
     }
 
     public function comics()

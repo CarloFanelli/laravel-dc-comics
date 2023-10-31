@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'HomePage')
 
 @section('content')
     <h1>comics</h1>
