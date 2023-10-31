@@ -27,27 +27,36 @@
                         <tr class="">
                             <td>{{ $comic['id'] }}</td>
                             <td scope="row">{{ $comic['title'] }}</td>
-                            {<td><img style="width:30px" class="img-fluid" src="{{ $comic['thumb'] }}" alt=""></td>
+                            {{-- <td>
 
-                            <td><img style="width:30px" class="img-fluid" src="{{ asset('storage/' . $comic->thumb) }}"
-                                    alt=""></td>
+                                @if ({{ $comic['thumb'] }})
+                                <img style="width:30px" class="img-fluid" src="{{ $comic['thumb'] }}" alt="">
+                            @else
+                                <img style="width:30px" class="img-fluid" src="{{ asset('storage/' . $comic->thumb) }}"
+                                    alt="">
+                    @endif
+                    </td>
+ --}}
+ <td><img style="width:30px" class="img-fluid" src="{{ $comic['thumb'] }}" alt="">
+    <img style="width:30px" class="img-fluid" src="{{ asset('storage/' . $comic->thumb) }}"
+    alt="">
+</td>
+                    <td>{{ $comic['price'] }}</td>
+                    <td>{{ $comic['series'] }}</td>
+                    <td>
+                        <a href=" {{ route('comics.show', $comic->id) }}  " class="btn btn-secondary">more</a>
+                        <a href="#" class="btn btn-info">edit</a>
+                        <a href="#" class="btn btn-danger">delete</a>
 
-                            <td>{{ $comic['price'] }}</td>
-                            <td>{{ $comic['series'] }}</td>
-                            <td>
-                                <a href=" {{ route('comics.show', $comic->id) }}  " class="btn btn-secondary">more</a>
-                                <a href="#" class="btn btn-info">edit</a>
-                                <a href="#" class="btn btn-danger">delete</a>
-
-                            </td>
-                        </tr>
+                    </td>
+                    </tr>
                     @empty
                         <h2>no comics here!</h2>
-                    @endforelse
-                </tbody>
-            </table>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
-    </div>
-
-@endsection
+    @endsection
