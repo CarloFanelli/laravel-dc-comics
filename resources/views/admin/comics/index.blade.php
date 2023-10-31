@@ -27,7 +27,11 @@
                         <tr class="">
                             <td>{{ $comic['id'] }}</td>
                             <td scope="row">{{ $comic['title'] }}</td>
-                            <td><img style="width:30px" class="img-fluid" src="{{ $comic['thumb'] }}" alt=""></td>
+                            {<td><img style="width:30px" class="img-fluid" src="{{ $comic['thumb'] }}" alt=""></td>
+
+                            <td><img style="width:30px" class="img-fluid" src="{{ asset('storage/' . $comic->thumb) }}"
+                                    alt=""></td>
+
                             <td>{{ $comic['price'] }}</td>
                             <td>{{ $comic['series'] }}</td>
                             <td>
@@ -40,7 +44,6 @@
                     @empty
                         <h2>no comics here!</h2>
                     @endforelse
-
                 </tbody>
             </table>
         </div>
