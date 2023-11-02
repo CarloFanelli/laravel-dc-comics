@@ -18,7 +18,7 @@
 
 <body>
 
-    @include('partials.header')
+    @include('admin.comics.header')
 
     @yield('content')
 

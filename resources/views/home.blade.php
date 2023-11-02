@@ -18,7 +18,13 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <img class="img-fluid" src="{{ $comic['thumb'] }}" alt="">
+
+                            @if (str_contains($comic['thumb'], 'http'))
+                                <img style="" class="img-fluid" src="{{ $comic['thumb'] }}" alt="">
+                            @else
+                                <img style="" class="img-fluid" src="{{ asset('storage/' . $comic->thumb) }}"
+                                    alt="">
+                            @endif
                         </div>
                         <div class="card-footer">
                             <div class="details d-flex justify-content-between">

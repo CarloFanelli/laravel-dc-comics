@@ -6,11 +6,13 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav w-100 m-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('home') }}" aria-current="page">Home <span
+                    <a class="nav-link active" href="{{ route('home') }}" aria-current="page">Home User <span
                             class="visually-hidden">(current)</span></a>
                 </li>
+
                 <li class="nav-item ms-auto">
-                    <a class="nav-link" href="{{ route('comics.index') }}">admin</a>
+                    <a class="nav-link" href="{{ route('comics.create') }}">add comic<i class="fa fa-user"
+                            aria-hidden="true"></i></a>
                 </li>
 
             </ul>
