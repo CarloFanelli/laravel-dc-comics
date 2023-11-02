@@ -27,36 +27,31 @@
                         <tr class="">
                             <td>{{ $comic['id'] }}</td>
                             <td scope="row">{{ $comic['title'] }}</td>
-                            {{-- <td>
+                            <td>
 
-                                @if ({{ $comic['thumb'] }})
-                                <img style="width:30px" class="img-fluid" src="{{ $comic['thumb'] }}" alt="">
-                            @else
-                                <img style="width:30px" class="img-fluid" src="{{ asset('storage/' . $comic->thumb) }}"
-                                    alt="">
-                    @endif
-                    </td>
- --}}
- <td><img style="width:30px" class="img-fluid" src="{{ $comic['thumb'] }}" alt="">
-    <img style="width:30px" class="img-fluid" src="{{ asset('storage/' . $comic->thumb) }}"
-    alt="">
-</td>
-                    <td>{{ $comic['price'] }}</td>
-                    <td>{{ $comic['series'] }}</td>
-                    <td>
-                        <a href=" {{ route('comics.show', $comic->id) }}  " class="btn btn-secondary">more</a>
-                        <a href="#" class="btn btn-info">edit</a>
-                        <a href="#" class="btn btn-danger">delete</a>
+                                @if (str_contains($comic['thumb'], 'http'))
+                                    <img style="width:30px" class="img-fluid" src="{{ $comic['thumb'] }}" alt="">
+                                @else
+                                    <img style="width:30px" class="img-fluid" src="{{ asset('storage/' . $comic->thumb) }}"
+                                        alt="">
+                                @endif
 
-                    </td>
-                    </tr>
+                            <td>{{ $comic['price'] }}</td>
+                            <td>{{ $comic['series'] }}</td>
+                            <td>
+                                <a href=" {{ route('comics.show', $comic->id) }}  " class="btn btn-secondary">more</a>
+                                <a href="#" class="btn btn-info">edit</a>
+                                <a href="#" class="btn btn-danger">delete</a>
+
+                            </td>
+                        </tr>
                     @empty
                         <h2>no comics here!</h2>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-
+                    @endforelse
+                </tbody>
+            </table>
         </div>
 
-    @endsection
+    </div>
+
+@endsection
