@@ -17,26 +17,33 @@
  --}}
             </div>
             <div class="container-fluid py-5">
-                <img src="{{ $comic->thumb }}" alt="">
+                @if (str_contains($comic['thumb'], 'http'))
+                    <img style="" class="img-fluid" src="{{ $comic['thumb'] }}" alt="">
+                @else
+                    <img style="" class="img-fluid" src="{{ asset('storage/' . $comic->thumb) }}" alt="">
+                @endif
                 <p class="m-0 col-md-8 fs-4">serie: {{ $comic->series }}</p>
                 <p class="m-0 col-md-8 fs-4">release: {{ $comic->sale_date }}</p>
                 <p class="m-0 col-md-8 fs-4">type: {{ $comic->type }}</p>
             </div>
         </div>
-        <h5 class="text-center">artists:</h5>
-        <ul class="list-unstyled d-flex justify-content-evenly ">
-            @foreach (json_decode($comic->artists) as $artist)
-                <li>{{ $artist }}</li>
-            @endforeach
-        </ul>
-        <h5 class="text-center">writer:</h5>
-        <ul class="list-unstyled d-flex justify-content-evenly ">
-            @foreach (json_decode($comic->writers) as $writer)
-                <li>{{ $writer }}</li>
-            @endforeach
-        </ul>
+
+        @if ($comic['artists'])
+            <h5 class="text-center">artists:</h5>
+            <ul class="list-unstyled d-flex justify-content-evenly ">
+                @foreach (json_decode($comic->artists) as $artist)
+                    <li>{{ $artist }}</li>
+                @endforeach
+            </ul>
+        @endif
+
+        @if ($comic['writers'])
+            <h5 class="text-center">writer:</h5>
+            <ul class="list-unstyled d-flex justify-content-evenly ">
+                @foreach (json_decode($comic->writers) as $writer)
+                    <li>{{ $writer }}</li>
+                @endforeach
+            </ul>
+        @endif
     </div>
-
-
-
 @endsection
