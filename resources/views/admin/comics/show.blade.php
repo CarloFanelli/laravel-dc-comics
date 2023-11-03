@@ -6,6 +6,14 @@
     <h1></h1>
 
     <div class="p-3 mb-4 bg-light rounded-3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a name="edit" id="edit" class="btn btn-primary" href="{{ route('comics.edit', $comic->id) }}"
+                        role="button">edit</a>
+                </div>
+            </div>
+        </div>
         <div class="d-flex">
             <div class="container-fluid py-5">
                 <h1 class="display-5 fw-bold">{{ $comic->title }}</h1>

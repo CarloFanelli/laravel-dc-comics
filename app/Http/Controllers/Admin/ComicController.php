@@ -46,7 +46,9 @@ class ComicController extends Controller
 
         $new_comic->save();
 
-        return view('admin.comics.create');
+        $comics = Comic::All();
+
+        return to_route('comics.index', compact('comics'));
     }
 
     /**
@@ -94,6 +96,13 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        if (!is_null($comic->thumb)) {
+
+            Storage::delete($comic['thumb']);
+        }
+
+        $comic->delete();
+
+        return to_route('comics.index')->with('message', 'Comic deleted successfully ✅');
     }
 }
