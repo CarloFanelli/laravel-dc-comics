@@ -11,7 +11,7 @@ class UpdateComicRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateComicRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'bail|required|string|max:80',
+            'price' => 'bail|required|string||max:10',
+            'tumbh' => 'bail|nullable|image|max:2000',
         ];
     }
 }

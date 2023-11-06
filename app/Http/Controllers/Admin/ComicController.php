@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -41,7 +42,7 @@ class ComicController extends Controller
         // $new_comic = new Comic();
 
         if ($request->has('thumb')) {
-            $file_path = Storage::put('comics_img', $val_data['thumb']);
+            $file_path = Storage::put('comics_img', $request['thumb']);
             $val_data['thumb'] = $file_path;
         }
 
@@ -85,13 +86,16 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
-        $data = $request->all();
+
+        $val_data = $request->validated();
+
+        //dd($val_data);
 
         if ($request->has('thumb') && $comic->thumb) {
 
-            $new_thumb = $request->thumb;
+            $new_thumb = $val_data->thumb;
 
             Storage::delete($comic['thumb']);
 
@@ -100,7 +104,7 @@ class ComicController extends Controller
             $data['thumb'] = $file_path;
         }
 
-        $comic->update($data);
+        $comic->update($val_data);
 
         return to_route('comics.show', $comic);
     }

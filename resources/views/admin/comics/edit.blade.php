@@ -6,6 +6,15 @@
 
     <div class="container py-5">
         <h3>edit comic here!</h3>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row">
             <form action="{{ route('comics.update', $comic) }}" method="POST" enctype="multipart/form-data">
 
