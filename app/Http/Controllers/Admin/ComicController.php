@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -30,21 +31,34 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        //$new_request = $request->request;
 
-        $new_comic = new Comic();
+        $val_data = $request->validated();
+
+        // dd($val_data);
+
+        // $new_comic = new Comic();
 
         if ($request->has('thumb')) {
-            $file_path = Storage::put('comics_img', $request->thumb);
-            $new_comic->thumb = $file_path;
+            $file_path = Storage::put('comics_img', $val_data['thumb']);
+            $val_data['thumb'] = $file_path;
         }
 
-        $new_comic->title = $request->title;
-        $new_comic->price = $request->price;
+        //Comic::store($val_data);
 
-        $new_comic->save();
+        /* 
+        if ($request->title) {
+            $new_comic->title = $request->title;
+        }
+
+        if ($request->price) {
+            $new_comic->price = $request->price;
+        }
+ */
+        //$new_comic->save($val_data);
+
+        Comic::create($val_data);
 
         $comics = Comic::All();
 
